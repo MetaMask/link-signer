@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy-static-site-uat:
-    uses: ./.github/workflows/deploy-static-s3-site.yml
+    uses: ./.github/workflows/deploy-static-site-to-s3.yaml
     with:
       aws_iam_role: arn:aws:iam::722264665990:role/uat-metamask-deeplink-signer-github-actions
       aws_region: us-east-1
