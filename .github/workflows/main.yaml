@@ -12,7 +12,6 @@ jobs:
     with:
       aws_iam_role: arn:aws:iam::722264665990:role/uat-metamask-deeplink-signer-github-actions
       aws_region: us-east-1
-      build_name: static-site-build
       s3_bucket: signer.link-test.metamask.consensys.io
       s3_prefix: /public/uat/
       environment: uat
