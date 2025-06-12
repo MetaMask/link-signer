@@ -21,7 +21,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: gha-va-scale-set-ubuntu-22.04-amd64-med
+    runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
 
