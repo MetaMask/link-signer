@@ -1,0 +1,41 @@
+name: deploy-static-s3-site
+
+on:
+  workflow_call:
+    inputs:
+      aws_iam_role:
+        required: true
+        type: string
+      aws_region:
+        required: true
+        type: string
+      s3_bucket:
+        required: true
+        type: string
+      s3_prefix:
+        default: ''
+        type: string
+      environment:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ inputs.aws_region }}
+          role-to-assume: ${{ inputs.aws_iam_role }}
+
+      - name: Deploy to S3
+        run: |
+          DEPLOY_DIR="public/${{ inputs.environment }}"
+          echo "Deploying from $DEPLOY_DIR to s3://${{ inputs.s3_bucket }}${{ inputs.s3_prefix }}"
+          aws s3 cp "$DEPLOY_DIR" "s3://${{ inputs.s3_bucket }}${{ inputs.s3_prefix }}" --recursive --acl private --cache-control max-age=0
