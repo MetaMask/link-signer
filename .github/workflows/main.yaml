@@ -22,7 +22,7 @@ jobs:
       environment: uat
 
   deploy-static-site-prd:
-    uses: ./.github/workflows/deploy-static-s3-site.yml
+    uses: ./.github/workflows/deploy-static-site-to-s3.yaml
     needs: [ deploy-static-site-uat ]
     with:
       aws_iam_role: arn:aws:iam::363762752069:role/prd-metamask-deeplink-signer-github-actions
