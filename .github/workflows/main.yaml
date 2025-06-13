@@ -1,10 +1,9 @@
-name: deploy-static-site-main
+name: main
 
 on:
   push:
     branches:
       - main
-      - index
 
 permissions:
   id-token: write
