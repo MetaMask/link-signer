@@ -6,6 +6,11 @@ on:
       - main
       - index
 
+permissions:
+  id-token: write
+  contents: read    
+
+
 jobs:
   deploy-static-site-uat:
     uses: ./.github/workflows/deploy-static-site-to-s3.yaml
